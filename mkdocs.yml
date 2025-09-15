@@ -1,0 +1,40 @@
+site_name: Orivia Docs
+site_url: https://orivia.github.io/orivia-sdk-docs.github.io
+
+nav:
+  - Home: index.md
+  - Unity Integration: unity.md
+  - Android Integration: android.md
+  - iOS Integration: ios.md
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  logo: images/logo.png
+  favicon: images/favicon.ico
+  features:
+    - content.code.copy
+
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
