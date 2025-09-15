@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://orivia.github.io/orivia-sdk-docs.github.io/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://orivia.github.io/orivia-sdk-docs.github.io/android/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://orivia.github.io/orivia-sdk-docs.github.io/ios/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://orivia.github.io/orivia-sdk-docs.github.io/unity/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+</urlset>

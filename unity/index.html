@@ -1,0 +1,932 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://orivia.github.io/orivia-sdk-docs.github.io/unity/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../android/">
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Unity Integration - Orivia Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#unity-integration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Orivia Docs" class="md-header__button md-logo" aria-label="Orivia Docs" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Orivia Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Unity Integration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Orivia Docs" class="md-nav__button md-logo" aria-label="Orivia Docs" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    Orivia Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Unity Integration
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Unity Integration
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#import-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      Import Package
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-sdk-keys-ad-unit-ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      Define SDK Keys &amp; Ad Unit IDs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initialize-max-orivia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialize MAX &amp; Orivia
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#store-ad-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Store Ad Results
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interstitial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interstitial
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interstitial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hook-into-max-interstitial-callbacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hook Into MAX Interstitial Callbacks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-show-interstitial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load &amp; Show Interstitial
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rewarded" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rewarded
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rewarded">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hook-into-max-rewarded-callbacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hook Into MAX Rewarded Callbacks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-show-rewarded" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load &amp; Show Rewarded
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#client-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Client Parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Privacy
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Android Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    iOS Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#import-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      Import Package
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-sdk-keys-ad-unit-ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      Define SDK Keys &amp; Ad Unit IDs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initialize-max-orivia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialize MAX &amp; Orivia
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#store-ad-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Store Ad Results
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interstitial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interstitial
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interstitial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hook-into-max-interstitial-callbacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hook Into MAX Interstitial Callbacks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-show-interstitial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load &amp; Show Interstitial
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rewarded" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rewarded
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rewarded">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hook-into-max-rewarded-callbacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hook Into MAX Rewarded Callbacks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-show-rewarded" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load &amp; Show Rewarded
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#client-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Client Parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Privacy
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="unity-integration">Unity Integration</h1>
+<p>This guide shows you how to integrate the Orivia SDK with AppLovin MAX in Unity</p>
+<h2 id="import-package">Import Package</h2>
+<p>Make sure the Orivia SDK namespace is available in your scripts:</p>
+<div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="nn">Orivia.Monetization</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="define-sdk-keys-ad-unit-ids">Define SDK Keys &amp; Ad Unit IDs</h2>
+<p>Declare your MAX SDK key, Orivia publisher ID, and ad unit IDs:</p>
+<div class="highlight"><pre><span></span><code><span class="k">private</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">MaxSdkKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;YOUR_MAX_SDK_KEY&quot;</span><span class="p">;</span>
+<span class="k">private</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">OriviaPublisherId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;YOUR_ORIVIA_PUBLISHER_ID&quot;</span><span class="p">;</span>
+
+<span class="cp">#if UNITY_IOS</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">InterstitialAdUnitId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;IOS_INTERSTITIAL_ID&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">RewardedAdUnitId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;IOS_REWARDED_ID&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">BannerAdUnitId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;IOS_BANNER_ID&quot;</span><span class="p">;</span>
+<span class="cp">#else</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">InterstitialAdUnitId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ANDROID_INTERSTITIAL_ID&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">RewardedAdUnitId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ANDROID_REWARDED_ID&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">BannerAdUnitId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ANDROID_BANNER_ID&quot;</span><span class="p">;</span>
+<span class="cp">#endif</span>
+</code></pre></div>
+<h2 id="initialize-max-orivia">Initialize MAX &amp; Orivia</h2>
+<p>Init MAX:</p>
+<div class="highlight"><pre><span></span><code><span class="n">MaxSdk</span><span class="p">.</span><span class="n">SetSdkKey</span><span class="p">(</span><span class="n">MaxSdkKey</span><span class="p">);</span>
+<span class="n">MaxSdk</span><span class="p">.</span><span class="n">InitializeSdk</span><span class="p">();</span>
+</code></pre></div>
+<p>Init Orivia: (any time after MAX init, but before requesting ads):</p>
+<div class="highlight"><pre><span></span><code><span class="n">OriviaSdk</span><span class="p">.</span><span class="n">Init</span><span class="p">(</span>
+<span class="w">    </span><span class="n">publisherId</span><span class="p">:</span><span class="w"> </span><span class="n">OriviaPublisherId</span><span class="p">,</span>
+<span class="w">    </span><span class="n">defaultBannerAdUnitId</span><span class="p">:</span><span class="w"> </span><span class="n">BannerAdUnitId</span><span class="p">,</span>
+<span class="w">    </span><span class="n">defaultInterstitialAdUnitId</span><span class="p">:</span><span class="w"> </span><span class="n">InterstitialAdUnitId</span><span class="p">,</span>
+<span class="w">    </span><span class="n">defaultRewardedAdUnitId</span><span class="p">:</span><span class="w"> </span><span class="n">RewardedAdUnitId</span><span class="p">,</span>
+<span class="w">    </span><span class="n">dataCollectionOnly</span><span class="p">:</span><span class="w"> </span><span class="k">false</span><span class="w"> </span><span class="c1">// optional, false by default</span>
+<span class="w">    </span><span class="n">initListener</span><span class="p">:</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SimpleInitListener</span><span class="p">()</span><span class="w"> </span><span class="c1">// optional</span>
+<span class="p">);</span>
+
+<span class="c1">// ...</span>
+
+<span class="k">internal</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">SimpleInitListener</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">IInitListener</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">OnInitCompleted</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&quot;Orivia SDK initialized.&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">OnInitFailed</span><span class="p">(</span><span class="n">OriviaException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Debug</span><span class="p">.</span><span class="n">LogError</span><span class="p">(</span><span class="s">$&quot;Orivia init failed: {ex.ErrorReason} — {ex.Message}&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Orivia is ready immediately after calling <code>Init</code>. You can load or show ads right away. If no config is loaded, default adUnits are used.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p><code>OnInitCompleted()</code> is triggered after the SDK loads its first config from the server.<br />
+To ensure optimal ads performance, it's <strong>highly recommended</strong> to wait for this callback <strong>before</strong> starting to load any ads.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>Calling <code>Init</code> multiple times <strong>does not</strong> reinitialize the SDK if it's already initialized or currently initializing.
+The method will only run again if the SDK has previously invoked the <code>OnInitFailed</code> callback.</p>
+<p>If <code>Init</code> is called after the SDK has been initialized, <code>OnInitCompleted()</code> is invoked immediately for provided listener.
+If <code>Init</code> is called while initialization is in progress, the newly provided listener will be notified as soon as initialization finishes, <strong>together</strong> with all previous listeners.</p>
+</div>
+<p>If a certain ad type isn't used, just pass the constant <code>OriviaSdk.AdUnitIdEmpty</code> instead of ad unit id.</p>
+<p>For example, if the application doesn't have a key for a banner:</p>
+<div class="highlight"><pre><span></span><code><span class="n">OriviaSdk</span><span class="p">.</span><span class="n">Init</span><span class="p">(</span>
+<span class="w">    </span><span class="n">publisherId</span><span class="p">:</span><span class="w"> </span><span class="n">OriviaPublisherId</span><span class="p">,</span>
+<span class="w">    </span><span class="n">defaultBannerAdUnitId</span><span class="p">:</span><span class="w"> </span><span class="n">OriviaSdk</span><span class="p">.</span><span class="n">AdUnitIdEmpty</span><span class="p">,</span>
+<span class="w">    </span><span class="n">defaultInterstitialAdUnitId</span><span class="p">:</span><span class="w"> </span><span class="n">InterstitialAdUnitId</span><span class="p">,</span>
+<span class="w">    </span><span class="n">defaultRewardedAdUnitId</span><span class="p">:</span><span class="w"> </span><span class="n">RewardedAdUnitId</span><span class="p">,</span>
+<span class="w">    </span><span class="n">dataCollectionOnly</span><span class="p">:</span><span class="w"> </span><span class="k">false</span><span class="w"> </span><span class="c1">// optional, false by default</span>
+<span class="w">    </span><span class="n">initListener</span><span class="p">:</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SimpleInitListener</span><span class="p">()</span><span class="w"> </span><span class="c1">// optional</span>
+<span class="p">);</span>
+</code></pre></div>
+<h2 id="store-ad-results">Store Ad Results</h2>
+<p>Create a single <code>OriviaMaxHelper</code> instance at class level:</p>
+<div class="highlight"><pre><span></span><code><span class="k">private</span><span class="w"> </span><span class="n">OriviaMaxHelper</span><span class="w"> </span><span class="n">_oriviaMaxHelper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">OriviaMaxHelper</span><span class="p">();</span>
+</code></pre></div>
+<p>This helper will remember the last success/failure per ad type and feed it to Orivia SDK.</p>
+<h2 id="interstitial">Interstitial</h2>
+<h3 id="hook-into-max-interstitial-callbacks">Hook Into MAX Interstitial Callbacks</h3>
+<p>Forward to the helper related events:</p>
+<div class="highlight"><pre><span></span><code><span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">InitializeInterstitialAds</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">MaxSdkCallbacks</span><span class="p">.</span><span class="n">Interstitial</span><span class="p">.</span><span class="n">OnAdLoadedEvent</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">OnInterstitialLoadedEvent</span><span class="p">;</span>
+<span class="w">    </span><span class="n">MaxSdkCallbacks</span><span class="p">.</span><span class="n">Interstitial</span><span class="p">.</span><span class="n">OnAdLoadFailedEvent</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">OnInterstitialFailedEvent</span><span class="p">;</span>
+<span class="w">    </span><span class="n">MaxSdkCallbacks</span><span class="p">.</span><span class="n">Interstitial</span><span class="p">.</span><span class="n">OnAdRevenuePaidEvent</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">OnInterstitialRevenuePaidEvent</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// ...</span>
+
+<span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">OnInterstitialLoadedEvent</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">adUnitId</span><span class="p">,</span><span class="w"> </span><span class="n">MaxSdkBase</span><span class="p">.</span><span class="n">AdInfo</span><span class="w"> </span><span class="n">adInfo</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">_oriviaMaxHelper</span><span class="p">.</span><span class="n">OnAdLoaded</span><span class="p">(</span><span class="n">adInfo</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">OnInterstitialFailedEvent</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">adUnitId</span><span class="p">,</span><span class="w"> </span><span class="n">MaxSdkBase</span><span class="p">.</span><span class="n">ErrorInfo</span><span class="w"> </span><span class="n">errorInfo</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">_oriviaMaxHelper</span><span class="p">.</span><span class="n">OnAdLoadFailed</span><span class="p">(</span><span class="n">AdType</span><span class="p">.</span><span class="n">Interstitial</span><span class="p">,</span><span class="w"> </span><span class="n">adUnitId</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">OnInterstitialRevenuePaidEvent</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">adUnitId</span><span class="p">,</span><span class="w"> </span><span class="n">MaxSdkBase</span><span class="p">.</span><span class="n">AdInfo</span><span class="w"> </span><span class="n">adInfo</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">_oriviaMaxHelper</span><span class="p">.</span><span class="n">OnAdRevenuePaid</span><span class="p">(</span><span class="n">adInfo</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>You should call these callbacks in the same place in your code where you handle your own callbacks or MMP callbacks.</p>
+<p>It's critical for the SDK to receive all events.</p>
+</div>
+<h3 id="load-show-interstitial">Load &amp; Show Interstitial</h3>
+<p>Use <code>OriviaMaxHelper</code> instance to pick the ad unit id, then call MAX:</p>
+<div class="highlight"><pre><span></span><code><span class="k">void</span><span class="w"> </span><span class="nf">LoadInterstitial</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// store returned ad unit id for later call show method </span>
+<span class="w">    </span><span class="n">_currentInterstitialAdUnitId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_oriviaMaxHelper</span><span class="p">.</span><span class="n">GetAdUnitId</span><span class="p">(</span><span class="n">AdType</span><span class="p">.</span><span class="n">Interstitial</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// disable MAX&#39;s auto-retry via extra parameter</span>
+<span class="w">    </span><span class="n">MaxSdk</span><span class="p">.</span><span class="n">SetInterstitialExtraParameter</span><span class="p">(</span><span class="n">_currentInterstitialAdUnitId</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;disable_auto_retries&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">MaxSdk</span><span class="p">.</span><span class="n">LoadInterstitial</span><span class="p">(</span><span class="n">_currentInterstitialAdUnitId</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">void</span><span class="w"> </span><span class="nf">ShowInterstitial</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_currentInterstitialAdUnitId</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">MaxSdk</span><span class="p">.</span><span class="n">IsInterstitialReady</span><span class="p">(</span><span class="n">_currentInterstitialAdUnitId</span><span class="p">))</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">MaxSdk</span><span class="p">.</span><span class="n">ShowInterstitial</span><span class="p">(</span><span class="n">_currentInterstitialAdUnitId</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p><code>GetAdUnitId</code> should <strong>NOT</strong> be used when <code>dataCollectionOnly</code> is <code>true</code>, as the SDK does not update ad units in this mode — it will only return the values returned from init configuration call.</p>
+</div>
+<h2 id="rewarded">Rewarded</h2>
+<h3 id="hook-into-max-rewarded-callbacks">Hook Into MAX Rewarded Callbacks</h3>
+<p>Forward to the helper related events:</p>
+<div class="highlight"><pre><span></span><code><span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">InitializeRewardedAds</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">MaxSdkCallbacks</span><span class="p">.</span><span class="n">Rewarded</span><span class="p">.</span><span class="n">OnAdLoadedEvent</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">OnRewardedAdLoadedEvent</span><span class="p">;</span>
+<span class="w">    </span><span class="n">MaxSdkCallbacks</span><span class="p">.</span><span class="n">Rewarded</span><span class="p">.</span><span class="n">OnAdLoadFailedEvent</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">OnRewardedAdFailedEvent</span><span class="p">;</span>
+<span class="w">    </span><span class="n">MaxSdkCallbacks</span><span class="p">.</span><span class="n">Rewarded</span><span class="p">.</span><span class="n">OnAdRevenuePaidEvent</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">OnRewardedAdRevenuePaidEvent</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// ...</span>
+
+<span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">OnRewardedAdLoadedEvent</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">adUnitId</span><span class="p">,</span><span class="w"> </span><span class="n">MaxSdkBase</span><span class="p">.</span><span class="n">AdInfo</span><span class="w"> </span><span class="n">adInfo</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">_oriviaMaxHelper</span><span class="p">.</span><span class="n">OnAdLoaded</span><span class="p">(</span><span class="n">adInfo</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">OnRewardedAdFailedEvent</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">adUnitId</span><span class="p">,</span><span class="w"> </span><span class="n">MaxSdkBase</span><span class="p">.</span><span class="n">ErrorInfo</span><span class="w"> </span><span class="n">errorInfo</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">_oriviaMaxHelper</span><span class="p">.</span><span class="n">OnAdLoadFailed</span><span class="p">(</span><span class="n">AdType</span><span class="p">.</span><span class="n">Rewarded</span><span class="p">,</span><span class="w"> </span><span class="n">adUnitId</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">OnRewardedAdRevenuePaidEvent</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">adUnitId</span><span class="p">,</span><span class="w"> </span><span class="n">MaxSdkBase</span><span class="p">.</span><span class="n">AdInfo</span><span class="w"> </span><span class="n">adInfo</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">_oriviaMaxHelper</span><span class="p">.</span><span class="n">OnAdRevenuePaid</span><span class="p">(</span><span class="n">adInfo</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>You should call these callbacks in the same place in your code where you handle your own callbacks or MMP callbacks.</p>
+<p>It's critical for the SDK to receive all events.</p>
+</div>
+<h3 id="load-show-rewarded">Load &amp; Show Rewarded</h3>
+<p>Use <code>OriviaMaxHelper</code> instance to pick the ad unit id, then call MAX:</p>
+<div class="highlight"><pre><span></span><code><span class="k">void</span><span class="w"> </span><span class="nf">LoadRewardedAd</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// store returned ad unit id for later call show method </span>
+<span class="w">    </span><span class="n">_currentRewardedAdUnitId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_oriviaMaxHelper</span><span class="p">.</span><span class="n">GetAdUnitId</span><span class="p">(</span><span class="n">AdType</span><span class="p">.</span><span class="n">Rewarded</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// disable MAX&#39;s auto-retry via extra parameter</span>
+<span class="w">    </span><span class="n">MaxSdk</span><span class="p">.</span><span class="n">SetRewardedAdExtraParameter</span><span class="p">(</span><span class="n">_currentRewardedAdUnitId</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;disable_auto_retries&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">MaxSdk</span><span class="p">.</span><span class="n">LoadRewardedAd</span><span class="p">(</span><span class="n">_currentInterstitialAdUnitId</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">void</span><span class="w"> </span><span class="nf">ShowRewardedAd</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_currentRewardedAdUnitId</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">MaxSdk</span><span class="p">.</span><span class="n">IsRewardedAdReady</span><span class="p">(</span><span class="n">_currentRewardedAdUnitId</span><span class="p">))</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">MaxSdk</span><span class="p">.</span><span class="n">ShowRewardedAd</span><span class="p">(</span><span class="n">_currentRewardedAdUnitId</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p><code>GetAdUnitId</code> should <strong>NOT</strong> be used when <code>dataCollectionOnly</code> is <code>true</code>, as the SDK does not update ad units in this mode — it will only return the values returned from init configuration call.</p>
+</div>
+<h2 id="client-parameters">Client Parameters</h2>
+<p>To pass client parameters to the server:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">nested</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ValueMap</span><span class="p">.</span><span class="n">Builder</span><span class="p">().</span><span class="n">Put</span><span class="p">(</span><span class="s">&quot;nested&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value&quot;</span><span class="p">).</span><span class="n">Build</span><span class="p">();</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">clientParams</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ValueMap</span><span class="p">.</span><span class="n">Builder</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="n">Put</span><span class="p">(</span><span class="s">&quot;str&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">Put</span><span class="p">(</span><span class="s">&quot;int&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UnityEngine</span><span class="p">.</span><span class="n">Random</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="n">Put</span><span class="p">(</span><span class="s">&quot;float&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">3.43</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">Put</span><span class="p">(</span><span class="s">&quot;bool&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">true</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">Put</span><span class="p">(</span><span class="s">&quot;nested&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nested</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+<span class="n">OriviaSdk</span><span class="p">.</span><span class="n">SetClientParams</span><span class="p">(</span><span class="n">clientParams</span><span class="p">);</span>
+</code></pre></div>
+<p>If the parameters should be passed in the init request, the <code>SetClientParams</code> method must be called before invoking the <code>Init</code> method.</p>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>Passing <code>null</code> to this method has no effect. To clear the parameters, pass an empty <code>ValueMap</code>.</p>
+</div>
+<h2 id="logging">Logging</h2>
+<p>Turn on internal logs for debugging:</p>
+<div class="highlight"><pre><span></span><code><span class="n">OriviaSdk</span><span class="p">.</span><span class="n">SetLoggingEnabled</span><span class="p">(</span><span class="n">boolean</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="privacy">Privacy</h2>
+<p>To pass GDPR Applies there are 2 options.</p>
+<p>Pass it through CMP <a href="https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/aa079f33b574bf5fe48594719cbe7e99d848bcd4/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md#in-app-details">IABTCF_gdprApplies</a> property or using SDK method:</p>
+<div class="highlight"><pre><span></span><code><span class="n">OriviaSdk</span><span class="p">.</span><span class="n">SetGdprApplies</span><span class="p">(</span><span class="n">boolean</span><span class="o">?</span><span class="p">)</span>
+</code></pre></div>
+<p>To pass COPPA:</p>
+<div class="highlight"><pre><span></span><code><span class="n">OriviaSdk</span><span class="p">.</span><span class="n">SetCoppa</span><span class="p">(</span><span class="n">boolean</span><span class="o">?</span><span class="p">)</span>
+</code></pre></div>
+<p>Null values reset properties.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
