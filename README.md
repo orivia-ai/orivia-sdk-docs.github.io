@@ -4,7 +4,7 @@ This repository contains the technical documentation for the Orivia SDK - ML-dri
 
 ## 📚 Documentation
 
-- **Live Documentation**: [View Documentation](https://orivia.github.io/orivia-sdk-docs.github.io)
+- **Live Documentation**: [View Documentation](https://orivia-ai.github.io/orivia-sdk-docs.github.io)
 - **Main Website**: [orivia.ai](https://orivia.ai/)
 
 ## 🚀 Quick Start
