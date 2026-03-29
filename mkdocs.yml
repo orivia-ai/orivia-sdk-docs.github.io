@@ -1,8 +1,9 @@
 site_name: Orivia Docs
-site_url: https://orivia.github.io/orivia-sdk-docs.github.io
+site_url: https://orivia-ai.github.io/orivia-sdk-docs.github.io
 
 nav:
   - Home: index.md
+  - Unity Managed MAX: unity-max.md
   - Unity Integration: unity.md
   - Android Integration: android.md
   - iOS Integration: ios.md
