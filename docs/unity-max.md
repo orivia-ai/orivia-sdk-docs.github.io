@@ -133,6 +133,39 @@ if (OriviaMaxSdk.IsRewardedReady)
     OriviaMaxSdk.ShowRewarded("placement");
 ```
 
+## Data Collection Only Mode
+
+In this mode `OriviaMaxSdk` only tracks events — it does not initialize AppLovin MAX, manage ad units, or control loading and display. The publisher drives everything via `MaxSdk` directly.
+
+Pass `dataCollectionOnly: true` to `Init`:
+
+```csharp
+MaxSdk.SetSdkKey(MaxSdkKey);
+MaxSdk.InitializeSdk(); // publisher initializes MAX
+
+OriviaMaxSdk.Init(
+    publisherId: OriviaPublisherId,
+    defaultInterstitialAdUnitId: InterstitialAdUnitId,
+    defaultRewardedAdUnitId: RewardedAdUnitId,
+    dataCollectionOnly: true,
+    initListener: new InitListener()
+);
+```
+
+`OnInitFinished` fires as soon as the Orivia SDK config is ready — MAX initialization is not awaited.
+
+The publisher loads and shows ads as usual:
+
+```csharp
+MaxSdk.LoadInterstitial(InterstitialAdUnitId);
+MaxSdk.ShowInterstitial(InterstitialAdUnitId);
+
+MaxSdk.LoadRewardedAd(RewardedAdUnitId);
+MaxSdk.ShowRewardedAd(RewardedAdUnitId);
+```
+
+`OriviaMaxSdk.LoadInterstitial`, `ShowInterstitial`, `LoadRewarded`, and `ShowRewarded` are disabled in this mode and log a warning if called.
+
 ## Client Parameters
 
 To pass client parameters to the server:
