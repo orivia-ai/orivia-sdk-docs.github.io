@@ -140,29 +140,40 @@ private void OnInterstitialRevenuePaidEvent(string adUnitId, MaxSdkBase.AdInfo a
 
 ### Load & Show Interstitial
 
-Use `OriviaMaxHelper` instance to pick the ad unit id, then call MAX:
+Use `OriviaMaxHelper` instance to pick the ad unit, then call MAX:
 
 ```csharp
+private OriviaMaxHelper.AdUnit? _currentInterstitialAdUnit;
+
 void LoadInterstitial()
 {
-    // store returned ad unit id for later call show method 
-    _currentInterstitialAdUnitId = _oriviaMaxHelper.GetAdUnitId(AdType.Interstitial);
+    // store returned ad unit for later use in show
+    _currentInterstitialAdUnit = _oriviaMaxHelper.GetAdUnit(AdType.Interstitial);
     // disable MAX's auto-retry via extra parameter
-    MaxSdk.SetInterstitialExtraParameter(_currentInterstitialAdUnitId, "disable_auto_retries", "true");
-    MaxSdk.LoadInterstitial(_currentInterstitialAdUnitId);
+    MaxSdk.SetInterstitialExtraParameter(_currentInterstitialAdUnit.MaxId, "disable_auto_retries", "true");
+    MaxSdk.LoadInterstitial(_currentInterstitialAdUnit.MaxId);
 }
 
 void ShowInterstitial()
 {
-    if (_currentInterstitialAdUnitId != null && MaxSdk.IsInterstitialReady(_currentInterstitialAdUnitId))
+    if (_currentInterstitialAdUnit != null && MaxSdk.IsInterstitialReady(_currentInterstitialAdUnit.MaxId))
     {
-        MaxSdk.ShowInterstitial(_currentInterstitialAdUnitId);
+        MaxSdk.ShowInterstitial(_currentInterstitialAdUnit.MaxId);
     }
 }
 ```
 
+`GetAdUnit` returns an `OriviaMaxHelper.AdUnit` object with the following fields:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `OriviaId` | `string` | Internal Orivia ad unit identifier |
+| `MaxId` | `string` | AppLovin MAX ad unit ID to use for ad requests |
+| `PriceFloor` | `double` | Price floor for the ad request; `0` if not set |
+| `Name` | `string` | Ad unit name; empty string if not available |
+
 !!! warning "Important"
-    `GetAdUnitId` should **NOT** be used when `dataCollectionOnly` is `true`, as the SDK does not update ad units in this mode — it will only return the values returned from init configuration call.
+    `GetAdUnit` should **NOT** be used when `dataCollectionOnly` is `true`, as the SDK does not update ad units in this mode — it will only return the values returned from init configuration call.
 
 ## Rewarded
 
@@ -205,29 +216,42 @@ private void OnRewardedAdRevenuePaidEvent(string adUnitId, MaxSdkBase.AdInfo adI
 
 ### Load & Show Rewarded
 
-Use `OriviaMaxHelper` instance to pick the ad unit id, then call MAX:
+Use `OriviaMaxHelper` instance to pick the ad unit, then call MAX:
 
 ```csharp
+private OriviaMaxHelper.AdUnit? _currentRewardedAdUnit;
+
 void LoadRewardedAd()
 {
-    // store returned ad unit id for later call show method 
-    _currentRewardedAdUnitId = _oriviaMaxHelper.GetAdUnitId(AdType.Rewarded);
+    // store returned ad unit for later use in show
+    _currentRewardedAdUnit = _oriviaMaxHelper.GetAdUnit(AdType.Rewarded);
     // disable MAX's auto-retry via extra parameter
-    MaxSdk.SetRewardedAdExtraParameter(_currentRewardedAdUnitId, "disable_auto_retries", "true");
-    MaxSdk.LoadRewardedAd(_currentInterstitialAdUnitId);
+    MaxSdk.SetRewardedAdExtraParameter(_currentRewardedAdUnit.MaxId, "disable_auto_retries", "true");
+    MaxSdk.LoadRewardedAd(_currentRewardedAdUnit.MaxId);
 }
 
 void ShowRewardedAd()
 {
-    if (_currentRewardedAdUnitId != null && MaxSdk.IsRewardedAdReady(_currentRewardedAdUnitId))
+    if (_currentRewardedAdUnit != null && MaxSdk.IsRewardedAdReady(_currentRewardedAdUnit.MaxId))
     {
-        MaxSdk.ShowRewardedAd(_currentRewardedAdUnitId);
+        MaxSdk.ShowRewardedAd(_currentRewardedAdUnit.MaxId);
     }
 }
 ```
 
 !!! warning "Important"
-    `GetAdUnitId` should **NOT** be used when `dataCollectionOnly` is `true`, as the SDK does not update ad units in this mode — it will only return the values returned from init configuration call.
+    `GetAdUnit` should **NOT** be used when `dataCollectionOnly` is `true`, as the SDK does not update ad units in this mode — it will only return the values returned from init configuration call.
+
+## Features Data
+
+`GetFeaturesData()` provides server-configured feature data, including AppLovin MAX specific settings.
+
+```csharp
+var featuresData = OriviaSdk.GetFeaturesData();
+Dictionary<string, string>? adUnitNames = featuresData.MaxFeatureData?.AdUnitNames;
+```
+
+`MaxFeatureData?.AdUnitNames` is a map of MAX ad unit ID → ad unit name configured on the server.
 
 ## Client Parameters
 
