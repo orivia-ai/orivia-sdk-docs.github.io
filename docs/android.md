@@ -446,6 +446,20 @@ Use `OriviaMaxHelper` instance to pick the ad unit id, then call MAX:
 !!! warning "Important"
     `getAdUnitId` should **NOT** be used when `dataCollectionOnly` is `true`, as the SDK does not update ad units in this mode — it will only return the values returned from init configuration call.
 
+## Extra Value
+
+Returns a server-configured string value for the given ad type and key.
+
+=== "Kotlin"
+    ```kotlin
+    val value: String? = OriviaSdk.getInstance(context).getExtraValue(AdType.INTERSTITIAL, "my_key")
+    ```
+
+=== "Java"
+    ```java
+    String value = OriviaSdk.getInstance(context).getExtraValue(AdType.INTERSTITIAL, "my_key");
+    ```
+
 ## Features Data
 
 `getFeaturesData()` provides server-configured feature data, including AppLovin MAX specific settings.

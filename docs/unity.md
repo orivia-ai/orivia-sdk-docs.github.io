@@ -242,6 +242,14 @@ void ShowRewardedAd()
 !!! warning "Important"
     `GetAdUnit` should **NOT** be used when `dataCollectionOnly` is `true`, as the SDK does not update ad units in this mode — it will only return the values returned from init configuration call.
 
+## Extra Value
+
+Returns a server-configured string value for the given ad type and key.
+
+```csharp
+string? value = OriviaSdk.GetExtraValue(AdType.Interstitial, "my_key");
+```
+
 ## Features Data
 
 `GetFeaturesData()` provides server-configured feature data, including AppLovin MAX specific settings.
