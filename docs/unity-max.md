@@ -54,6 +54,8 @@ void Start()
 
 `Init` initializes Orivia SDK first, fetches remote config, then initializes AppLovin MAX. Both must complete before ads can be loaded.
 
+`Init` also accepts a `defaultBannerAdUnitId`. `OriviaMaxSdk` does not load or show banners itself — manage banners directly via `MaxSdk` — but passing it in lets the ad unit rotation logic account for banner placements too.
+
 !!! warning "Important"
     You may subscribe to AppLovin MAX callbacks directly for informational purposes (e.g., analytics), but all ad display operations must go through `OriviaMaxSdk`.
 
