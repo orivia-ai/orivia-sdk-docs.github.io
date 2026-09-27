@@ -8,7 +8,7 @@ Orivia SDK provides ML-driven ad unit optimization for AppLovin MAX. The SDK dyn
 |----------|--------|---------------|
 | **Unity** | ✅ Available | [Unity Integration](unity.md) |
 | **Android** | ✅ Available | [Android Integration](android.md) |
-| **iOS** | 🚧 Coming Soon | [iOS Integration](ios.md) |
+| **iOS** | ✅ Available | [iOS Integration](ios.md) |
 
 ## 🔧 Quick Integration
 
@@ -56,4 +56,4 @@ Choose your platform and follow the integration guide:
 
 - [Unity Integration Guide](unity.md) - Complete Unity setup and implementation
 - [Android Integration Guide](android.md) - Android/Kotlin/Java implementation
-- [iOS Integration Guide](ios.md) - iOS implementation (coming soon)
+- [iOS Integration Guide](ios.md) - iOS/Swift implementation

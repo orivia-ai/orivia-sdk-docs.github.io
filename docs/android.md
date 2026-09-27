@@ -4,7 +4,31 @@ This guide shows you how to integrate the Orivia SDK with AppLovin MAX in Androi
 
 ## Import Dependencies
 
-Add the Orivia SDK to your project (currently, only manual addition of AAR artifacts is available).
+Add the Orivia Maven repository, then the core SDK and MAX mediation module:
+
+=== "Kotlin DSL"
+    ```kotlin
+    repositories {
+        maven { url = uri("https://raw.githubusercontent.com/orivia-ai/orivia-maven/main") }
+    }
+
+    dependencies {
+        implementation("ai.orivia:monetization:1.15.0")
+        implementation("ai.orivia:mediation-max:1.15.0")
+    }
+    ```
+
+=== "Groovy DSL"
+    ```groovy
+    repositories {
+        maven { url "https://raw.githubusercontent.com/orivia-ai/orivia-maven/main" }
+    }
+
+    dependencies {
+        implementation "ai.orivia:monetization:1.15.0"
+        implementation "ai.orivia:mediation-max:1.15.0"
+    }
+    ```
 
 ## Define SDK Keys & Ad Unit IDs
 

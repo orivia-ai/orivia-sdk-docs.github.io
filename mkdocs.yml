@@ -6,7 +6,9 @@ nav:
   - Unity Managed MAX: unity-max.md
   - Unity Managed AdMob: unity-admob.md
   - Unity Integration: unity.md
+  - Android Managed MAX: android-max.md
   - Android Integration: android.md
+  - iOS Managed MAX: ios-max.md
   - iOS Integration: ios.md
 
 theme:
