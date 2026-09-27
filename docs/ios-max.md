@@ -10,8 +10,8 @@ Add the Orivia specs repository, then the core SDK and MAX mediation pod, to you
 source 'https://github.com/orivia-ai/orivia-specs.git'
 source 'https://cdn.cocoapods.org/'
 
-pod 'OriviaMonetization', '1.15.0'
-pod 'OriviaMonetizationMax', '1.15.0'
+pod 'OriviaMonetization', '1.15.1'
+pod 'OriviaMonetizationMax', '1.15.1'
 ```
 
 Run `pod install`.
