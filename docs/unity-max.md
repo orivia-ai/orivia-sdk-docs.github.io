@@ -108,6 +108,39 @@ OriviaMaxSdk.OnRewardedLoaded += () =>
 
 The callback fires only when the full load cycle is complete. It is safe to call `ShowInterstitial` / `ShowRewarded` directly from the callback.
 
+`OnInterstitialUpdated` / `OnRewardedUpdated` fire when a more profitable not-yet-shown ad loads after the initial load:
+
+```csharp
+OriviaMaxSdk.OnInterstitialUpdated += (adUnitId, adInfo) =>
+{
+    // The best not-yet-shown interstitial offer changed.
+};
+
+OriviaMaxSdk.OnRewardedUpdated += (adUnitId, adInfo) =>
+{
+    // The best not-yet-shown rewarded offer changed.
+};
+```
+
+These are informational only — `ShowInterstitial` / `ShowRewarded` always show the current best offer automatically, so you don't need to act on this event to show the right ad.
+
+`OnInterstitialHidden` / `OnRewardedHidden` fire once the shown ad is gone, so you can safely request the next ad:
+
+```csharp
+OriviaMaxSdk.OnInterstitialHidden += (adUnitId, adInfo) =>
+{
+    // Interstitial is done — safe to call LoadInterstitial again.
+};
+
+OriviaMaxSdk.OnRewardedHidden += (adUnitId, adInfo) =>
+{
+    // Rewarded is done — safe to call LoadRewarded again.
+};
+```
+
+!!! info "Info"
+    `OnInterstitialHidden` / `OnRewardedHidden` are not a 1:1 passthrough of AppLovin MAX's own hidden callback. `OriviaMaxSdk` starts a guard as soon as `ShowInterstitial` / `ShowRewarded` is called; if AppLovin MAX never confirms the ad was dismissed, this event fires on its own after a server-configured delay. Treat it as "this ad is done" rather than a precise timestamp of when it actually closed.
+
 ## Showing Ads
 
 `placement` and `customData` are passed directly to AppLovin MAX and behave identically to `MaxSdk.ShowInterstitial` / `MaxSdk.ShowRewardedAd`.
