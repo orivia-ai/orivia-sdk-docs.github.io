@@ -108,22 +108,6 @@ OriviaMaxSdk.OnRewardedLoaded += () =>
 
 The callback fires only when the full load cycle is complete. It is safe to call `ShowInterstitial` / `ShowRewarded` directly from the callback.
 
-`OnInterstitialUpdated` / `OnRewardedUpdated` fire when a more profitable not-yet-shown ad loads after the initial load:
-
-```csharp
-OriviaMaxSdk.OnInterstitialUpdated += (adUnitId, adInfo) =>
-{
-    // The best not-yet-shown interstitial offer changed.
-};
-
-OriviaMaxSdk.OnRewardedUpdated += (adUnitId, adInfo) =>
-{
-    // The best not-yet-shown rewarded offer changed.
-};
-```
-
-These are informational only — `ShowInterstitial` / `ShowRewarded` always show the current best offer automatically, so you don't need to act on this event to show the right ad.
-
 `OnInterstitialHidden` / `OnRewardedHidden` fire once the shown ad is gone, so you can safely request the next ad:
 
 ```csharp
