@@ -125,6 +125,23 @@ OriviaMaxSdk.OnRewardedHidden += (adUnitId, adInfo) =>
 !!! info "Info"
     `OnInterstitialHidden` / `OnRewardedHidden` are not a 1:1 passthrough of AppLovin MAX's own hidden callback. `OriviaMaxSdk` starts a guard as soon as `ShowInterstitial` / `ShowRewarded` is called; if AppLovin MAX never confirms the ad was dismissed, this event fires on its own after a server-configured delay. Treat it as "this ad is done" rather than a precise timestamp of when it actually closed.
 
+## Extra Value
+
+Subscribe to changes of a single server-configured extra value for an ad type — the callback fires immediately with the current value, then again on every subsequent change:
+
+```csharp
+IDisposable subscription = OriviaMaxSdk.SubscribeOnExtraValue(AdType.Interstitial, "my_key", value =>
+{
+    Debug.Log($"my_key updated: {value}");
+});
+
+// Later, when no longer needed:
+subscription.Dispose();
+```
+
+!!! info "Info"
+    For a one-off read without subscribing, use `OriviaSdk.GetExtraValue(adType, key)` directly.
+
 ## Showing Ads
 
 `placement` and `customData` are passed directly to AppLovin MAX and behave identically to `MaxSdk.ShowInterstitial` / `MaxSdk.ShowRewardedAd`.
