@@ -250,6 +250,18 @@ Returns a server-configured string value for the given ad type and key.
 string? value = OriviaSdk.GetExtraValue(AdType.Interstitial, "my_key");
 ```
 
+To be notified whenever that value changes, subscribe instead — the callback fires immediately with the current value, then again on every subsequent change:
+
+```csharp
+IDisposable subscription = OriviaSdk.SubscribeOnExtraValue(AdType.Interstitial, "my_key", value =>
+{
+    Debug.Log($"my_key updated: {value}");
+});
+
+// Later, when no longer needed:
+subscription.Dispose();
+```
+
 ## Features Data
 
 `GetFeaturesData()` provides server-configured feature data, including AppLovin MAX specific settings.
