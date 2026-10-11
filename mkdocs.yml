@@ -7,9 +7,11 @@ nav:
   - Unity Managed AdMob: unity-admob.md
   - Unity Integration: unity.md
   - Android Managed MAX: android-max.md
-  - Android Integration: android.md
+  - Android Integration (MAX): android.md
+  - Android Integration (AdMob): android-admob.md
   - iOS Managed MAX: ios-max.md
-  - iOS Integration: ios.md
+  - iOS Integration (MAX): ios.md
+  - iOS Integration (AdMob): ios-admob.md
 
 theme:
   name: material

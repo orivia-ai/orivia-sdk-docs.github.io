@@ -262,6 +262,29 @@ IDisposable subscription = OriviaSdk.SubscribeOnExtraValue(AdType.Interstitial, 
 subscription.Dispose();
 ```
 
+## Ad Config Update Listener
+
+`SubscribeOnExtraValue` above is built on this lower-level primitive — most apps should prefer `SubscribeOnExtraValue` for watching a single value. Use `IAdConfigUpdateListener` directly to get notified whenever the server-driven ad config for a given ad type changes (regardless of which value changed, or even if nothing changed):
+
+```csharp
+private class AdConfigListener : IAdConfigUpdateListener
+{
+    public void OnAdConfigUpdated(AdType adType)
+    {
+        // ad config for adType was refreshed
+    }
+}
+
+var listener = new AdConfigListener();
+OriviaSdk.AddAdConfigUpdateListener(AdType.Interstitial, listener);
+
+// Later, when no longer needed:
+OriviaSdk.RemoveAdConfigUpdateListener(AdType.Interstitial, listener);
+```
+
+!!! warning "Important"
+    The listener fires on every config refresh, not only when a value actually changed, and is held with a strong reference until removed — always call `RemoveAdConfigUpdateListener` to avoid leaking.
+
 ## Features Data
 
 `GetFeaturesData()` provides server-configured feature data, including AppLovin MAX specific settings.

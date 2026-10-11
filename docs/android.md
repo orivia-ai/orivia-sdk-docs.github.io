@@ -484,6 +484,37 @@ Returns a server-configured string value for the given ad type and key.
     String value = OriviaSdk.getInstance(context).getExtraValue(AdType.INTERSTITIAL, "my_key");
     ```
 
+## Ad Config Update Listener
+
+Get notified whenever the server-driven ad config for a given ad type changes:
+
+=== "Kotlin"
+    ```kotlin
+    val listener = object : OriviaSdk.AdConfigUpdateListener {
+        override fun onAdConfigUpdated(adType: AdType) {
+            // ad config for adType was refreshed
+        }
+    }
+    OriviaSdk.getInstance(context).addAdConfigUpdateListener(AdType.INTERSTITIAL, listener)
+
+    // Later, when no longer needed:
+    OriviaSdk.getInstance(context).removeAdConfigUpdateListener(AdType.INTERSTITIAL, listener)
+    ```
+
+=== "Java"
+    ```java
+    OriviaSdk.AdConfigUpdateListener listener = adType -> {
+        // ad config for adType was refreshed
+    };
+    OriviaSdk.getInstance(context).addAdConfigUpdateListener(AdType.INTERSTITIAL, listener);
+
+    // Later, when no longer needed:
+    OriviaSdk.getInstance(context).removeAdConfigUpdateListener(AdType.INTERSTITIAL, listener);
+    ```
+
+!!! warning "Important"
+    The listener fires on every config refresh, not only when a value actually changed, and is held with a strong reference until removed — always call `removeAdConfigUpdateListener` (e.g. in `onDestroy`) to avoid leaking.
+
 ## Features Data
 
 `getFeaturesData()` provides server-configured feature data, including AppLovin MAX specific settings.

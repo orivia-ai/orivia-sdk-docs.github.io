@@ -301,6 +301,27 @@ Returns a server-configured string value for the given ad type and key.
 let value: String? = OriviaSdk.shared.getExtraValue(adType: .interstitial, key: "my_key")
 ```
 
+## Ad Config Update Listener
+
+Get notified whenever the server-driven ad config for a given ad type changes:
+
+```swift
+class AdConfigObserver: OriviaSdk.AdConfigUpdateListener {
+    func onAdConfigUpdated(adType: AdType) {
+        // ad config for adType was refreshed
+    }
+}
+
+let observer = AdConfigObserver()
+OriviaSdk.shared.addAdConfigUpdateListener(adType: .interstitial, listener: observer)
+
+// Later, when no longer needed:
+OriviaSdk.shared.removeAdConfigUpdateListener(adType: .interstitial, listener: observer)
+```
+
+!!! warning "Important"
+    The listener fires on every config refresh, not only when a value actually changed, and is held with a strong reference until removed — keep a reference to `observer` yourself and always call `removeAdConfigUpdateListener` to avoid leaking.
+
 ## Features Data
 
 `getFeaturesData()` provides server-configured feature data, including AppLovin MAX specific settings.
