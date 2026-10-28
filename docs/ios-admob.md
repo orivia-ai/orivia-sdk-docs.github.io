@@ -10,8 +10,8 @@ Add the Orivia specs repository, then the core SDK and AdMob mediation pod, to y
 source 'https://github.com/orivia-ai/orivia-specs.git'
 source 'https://cdn.cocoapods.org/'
 
-pod 'OriviaMonetization', '1.17.0'
-pod 'OriviaMonetizationAdmob', '1.17.0'
+pod 'OriviaMonetization', '1.18.0'
+pod 'OriviaMonetizationAdmob', '1.18.0'
 ```
 
 Run `pod install`.

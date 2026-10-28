@@ -13,8 +13,8 @@ Add the Orivia Maven repository, then the core SDK and AdMob mediation module:
     }
 
     dependencies {
-        implementation("ai.orivia:monetization:1.17.0")
-        implementation("ai.orivia:mediation-admob:1.17.0")
+        implementation("ai.orivia:monetization:1.18.0")
+        implementation("ai.orivia:mediation-admob:1.18.0")
     }
     ```
 
@@ -25,8 +25,8 @@ Add the Orivia Maven repository, then the core SDK and AdMob mediation module:
     }
 
     dependencies {
-        implementation "ai.orivia:monetization:1.17.0"
-        implementation "ai.orivia:mediation-admob:1.17.0"
+        implementation "ai.orivia:monetization:1.18.0"
+        implementation "ai.orivia:mediation-admob:1.18.0"
     }
     ```
 
