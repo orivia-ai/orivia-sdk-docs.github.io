@@ -13,8 +13,8 @@ Add the Orivia Maven repository, then the core SDK and AdMob mediation module:
     }
 
     dependencies {
-        implementation("ai.orivia:monetization:1.18.0")
-        implementation("ai.orivia:mediation-admob:1.18.0")
+        implementation("ai.orivia:monetization:1.19.0")
+        implementation("ai.orivia:mediation-admob:1.19.0")
     }
     ```
 
@@ -25,8 +25,8 @@ Add the Orivia Maven repository, then the core SDK and AdMob mediation module:
     }
 
     dependencies {
-        implementation "ai.orivia:monetization:1.18.0"
-        implementation "ai.orivia:mediation-admob:1.18.0"
+        implementation "ai.orivia:monetization:1.19.0"
+        implementation "ai.orivia:mediation-admob:1.19.0"
     }
     ```
 
@@ -36,6 +36,7 @@ Declare your Orivia publisher ID and ad unit IDs:
 
 === "Kotlin"
     ```kotlin
+    private const val ADMOB_APP_ID = "YOUR_ADMOB_APP_ID"
     private const val ORIVIA_PUBLISHER_ID = "YOUR_ORIVIA_PUBLISHER_ID"
 
     private const val INTERSTITIAL_AD_UNIT_ID = "YOUR_INTERSTITIAL_AD_UNIT_ID"
@@ -45,6 +46,7 @@ Declare your Orivia publisher ID and ad unit IDs:
 
 === "Java"
     ```java
+    private static final String ADMOB_APP_ID = "YOUR_ADMOB_APP_ID";
     private static final String ORIVIA_PUBLISHER_ID = "YOUR_ORIVIA_PUBLISHER_ID";
 
     private static final String INTERSTITIAL_AD_UNIT_ID = "YOUR_INTERSTITIAL_AD_UNIT_ID";
@@ -54,18 +56,23 @@ Declare your Orivia publisher ID and ad unit IDs:
 
 ## Initialize AdMob & Orivia
 
+!!! info "Info"
+    Orivia's AdMob mediation module targets the [GMA Next-Gen SDK](https://developers.google.com/admob/android/next-gen/migration) (`com.google.android.libraries.ads.mobile.sdk:ads-mobile-sdk`), not the legacy `com.google.android.gms:play-services-ads`. If you're integrating AdMob for the first time, add the Next-Gen SDK dependency to your app.
+
 Init AdMob:
 
 === "Kotlin"
     ```kotlin
-    MobileAds.initialize(context) {
+    val initConfig = InitializationConfig.Builder(ADMOB_APP_ID).build()
+    MobileAds.initialize(context, initConfig) {
         // AdMob SDK initialized
     }
     ```
 
 === "Java"
     ```java
-    MobileAds.initialize(context, initializationStatus -> {
+    InitializationConfig initConfig = new InitializationConfig.Builder(ADMOB_APP_ID).build();
+    MobileAds.initialize(context, initConfig, initializationStatus -> {
         // AdMob SDK initialized
     });
     ```
@@ -124,7 +131,7 @@ Init Orivia with `Mediation.ADMOB` (any time after AdMob init, but before reques
     Orivia is ready immediately after calling `init`. You can load or show ads right away. If no config is loaded, default IDs are used.
 
 !!! info "Info"
-    Unlike MAX, AdMob has no runtime SDK key — its App ID is configured via `AndroidManifest.xml` meta-data instead.
+    Unlike MAX, AdMob has no runtime SDK key — its App ID is passed to `InitializationConfig.Builder` instead. The Google User Messaging Platform (UMP) SDK still reads its App ID from the `com.google.android.gms.ads.APPLICATION_ID` meta-data in `AndroidManifest.xml`, so keep that tag even after migrating to the Next-Gen SDK.
 
 !!! warning "Important"
     `onInitCompleted()` is triggered after the SDK loads its first config from the server.  
@@ -169,30 +176,29 @@ Use `OriviaAdmobHelper` instance to pick the ad unit id, load via AdMob, then fo
     private fun loadInterstitial() {
         val adUnitId = oriviaAdmobHelper.getAdUnitId(AdType.INTERSTITIAL)
         InterstitialAd.load(
-            context,
-            adUnitId,
-            AdRequest.Builder().build(),
-            object : InterstitialAdLoadCallback() {
+            AdRequest.Builder(adUnitId).build(),
+            object : AdLoadCallback<InterstitialAd> {
                 override fun onAdLoaded(ad: InterstitialAd) {
-                    ad.onPaidEventListener = OnPaidEventListener { adValue ->
-                        oriviaAdmobHelper.onPaidEvent(AdType.INTERSTITIAL, adUnitId, adValue, ad.responseInfo)
-                    }
-                    ad.fullScreenContentCallback = object : FullScreenContentCallback() {
+                    ad.adEventCallback = object : InterstitialAdEventCallback {
+                        override fun onAdPaid(value: AdValue) {
+                            oriviaAdmobHelper.onPaidEvent(AdType.INTERSTITIAL, adUnitId, value, ad.getResponseInfo())
+                        }
+
                         override fun onAdDismissedFullScreenContent() {
                             // Handle interstitial hidden
                         }
 
-                        override fun onAdFailedToShowFullScreenContent(error: AdError) {
+                        override fun onAdFailedToShowFullScreenContent(fullScreenContentError: FullScreenContentError) {
                             // Handle interstitial display failed
                         }
                     }
-                    oriviaAdmobHelper.onAdLoaded(AdType.INTERSTITIAL, adUnitId, ad.responseInfo)
+                    oriviaAdmobHelper.onAdLoaded(AdType.INTERSTITIAL, adUnitId, ad.getResponseInfo())
                     interstitialAd = ad
                     // Handle your own interstitial loaded logic
                 }
 
-                override fun onAdFailedToLoad(error: LoadAdError) {
-                    oriviaAdmobHelper.onAdLoadFailed(AdType.INTERSTITIAL, adUnitId, error)
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    oriviaAdmobHelper.onAdLoadFailed(AdType.INTERSTITIAL, adUnitId, adError)
                     // Handle your own interstitial failed logic
                 }
             }
@@ -211,23 +217,23 @@ Use `OriviaAdmobHelper` instance to pick the ad unit id, load via AdMob, then fo
     private void loadInterstitial() {
         String adUnitId = oriviaAdmobHelper.getAdUnitId(AdType.INTERSTITIAL);
         InterstitialAd.load(
-            context,
-            adUnitId,
-            new AdRequest.Builder().build(),
-            new InterstitialAdLoadCallback() {
+            new AdRequest.Builder(adUnitId).build(),
+            new AdLoadCallback<InterstitialAd>() {
                 @Override
                 public void onAdLoaded(InterstitialAd ad) {
-                    ad.setOnPaidEventListener(adValue ->
-                        oriviaAdmobHelper.onPaidEvent(AdType.INTERSTITIAL, adUnitId, adValue, ad.getResponseInfo())
-                    );
-                    ad.setFullScreenContentCallback(new FullScreenContentCallback() {
+                    ad.setAdEventCallback(new InterstitialAdEventCallback() {
+                        @Override
+                        public void onAdPaid(AdValue value) {
+                            oriviaAdmobHelper.onPaidEvent(AdType.INTERSTITIAL, adUnitId, value, ad.getResponseInfo());
+                        }
+
                         @Override
                         public void onAdDismissedFullScreenContent() {
                             // Handle interstitial hidden
                         }
 
                         @Override
-                        public void onAdFailedToShowFullScreenContent(AdError error) {
+                        public void onAdFailedToShowFullScreenContent(FullScreenContentError fullScreenContentError) {
                             // Handle interstitial display failed
                         }
                     });
@@ -237,8 +243,8 @@ Use `OriviaAdmobHelper` instance to pick the ad unit id, load via AdMob, then fo
                 }
 
                 @Override
-                public void onAdFailedToLoad(LoadAdError error) {
-                    oriviaAdmobHelper.onAdLoadFailed(AdType.INTERSTITIAL, adUnitId, error);
+                public void onAdFailedToLoad(LoadAdError adError) {
+                    oriviaAdmobHelper.onAdLoadFailed(AdType.INTERSTITIAL, adUnitId, adError);
                     // Handle your own interstitial failed logic
                 }
             }
@@ -273,30 +279,29 @@ Use `OriviaAdmobHelper` instance to pick the ad unit id, load via AdMob, then fo
     private fun loadRewarded() {
         val adUnitId = oriviaAdmobHelper.getAdUnitId(AdType.REWARDED)
         RewardedAd.load(
-            context,
-            adUnitId,
-            AdRequest.Builder().build(),
-            object : RewardedAdLoadCallback() {
+            AdRequest.Builder(adUnitId).build(),
+            object : AdLoadCallback<RewardedAd> {
                 override fun onAdLoaded(ad: RewardedAd) {
-                    ad.onPaidEventListener = OnPaidEventListener { adValue ->
-                        oriviaAdmobHelper.onPaidEvent(AdType.REWARDED, adUnitId, adValue, ad.responseInfo)
-                    }
-                    ad.fullScreenContentCallback = object : FullScreenContentCallback() {
+                    ad.adEventCallback = object : RewardedAdEventCallback {
+                        override fun onAdPaid(value: AdValue) {
+                            oriviaAdmobHelper.onPaidEvent(AdType.REWARDED, adUnitId, value, ad.getResponseInfo())
+                        }
+
                         override fun onAdDismissedFullScreenContent() {
                             // Handle rewarded hidden
                         }
 
-                        override fun onAdFailedToShowFullScreenContent(error: AdError) {
+                        override fun onAdFailedToShowFullScreenContent(fullScreenContentError: FullScreenContentError) {
                             // Handle rewarded display failed
                         }
                     }
-                    oriviaAdmobHelper.onAdLoaded(AdType.REWARDED, adUnitId, ad.responseInfo)
+                    oriviaAdmobHelper.onAdLoaded(AdType.REWARDED, adUnitId, ad.getResponseInfo())
                     rewardedAd = ad
                     // Handle your own rewarded loaded logic
                 }
 
-                override fun onAdFailedToLoad(error: LoadAdError) {
-                    oriviaAdmobHelper.onAdLoadFailed(AdType.REWARDED, adUnitId, error)
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    oriviaAdmobHelper.onAdLoadFailed(AdType.REWARDED, adUnitId, adError)
                     // Handle your own rewarded failed logic
                 }
             }
@@ -304,9 +309,11 @@ Use `OriviaAdmobHelper` instance to pick the ad unit id, load via AdMob, then fo
     }
 
     private fun showRewarded() {
-        rewardedAd?.show(activity) { rewardItem ->
-            // Handle user rewarded
-        }
+        rewardedAd?.show(activity, object : OnUserEarnedRewardListener {
+            override fun onUserEarnedReward(reward: RewardItem) {
+                // Handle user rewarded
+            }
+        })
     }
     ```
 
@@ -317,23 +324,23 @@ Use `OriviaAdmobHelper` instance to pick the ad unit id, load via AdMob, then fo
     private void loadRewarded() {
         String adUnitId = oriviaAdmobHelper.getAdUnitId(AdType.REWARDED);
         RewardedAd.load(
-            context,
-            adUnitId,
-            new AdRequest.Builder().build(),
-            new RewardedAdLoadCallback() {
+            new AdRequest.Builder(adUnitId).build(),
+            new AdLoadCallback<RewardedAd>() {
                 @Override
                 public void onAdLoaded(RewardedAd ad) {
-                    ad.setOnPaidEventListener(adValue ->
-                        oriviaAdmobHelper.onPaidEvent(AdType.REWARDED, adUnitId, adValue, ad.getResponseInfo())
-                    );
-                    ad.setFullScreenContentCallback(new FullScreenContentCallback() {
+                    ad.setAdEventCallback(new RewardedAdEventCallback() {
+                        @Override
+                        public void onAdPaid(AdValue value) {
+                            oriviaAdmobHelper.onPaidEvent(AdType.REWARDED, adUnitId, value, ad.getResponseInfo());
+                        }
+
                         @Override
                         public void onAdDismissedFullScreenContent() {
                             // Handle rewarded hidden
                         }
 
                         @Override
-                        public void onAdFailedToShowFullScreenContent(AdError error) {
+                        public void onAdFailedToShowFullScreenContent(FullScreenContentError fullScreenContentError) {
                             // Handle rewarded display failed
                         }
                     });
@@ -343,8 +350,8 @@ Use `OriviaAdmobHelper` instance to pick the ad unit id, load via AdMob, then fo
                 }
 
                 @Override
-                public void onAdFailedToLoad(LoadAdError error) {
-                    oriviaAdmobHelper.onAdLoadFailed(AdType.REWARDED, adUnitId, error);
+                public void onAdFailedToLoad(LoadAdError adError) {
+                    oriviaAdmobHelper.onAdLoadFailed(AdType.REWARDED, adUnitId, adError);
                     // Handle your own rewarded failed logic
                 }
             }
@@ -353,7 +360,7 @@ Use `OriviaAdmobHelper` instance to pick the ad unit id, load via AdMob, then fo
 
     private void showRewarded() {
         if (rewardedAd != null) {
-            rewardedAd.show(activity, rewardItem -> {
+            rewardedAd.show(activity, reward -> {
                 // Handle user rewarded
             });
         }
